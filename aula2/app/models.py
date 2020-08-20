@@ -17,12 +17,16 @@ https://docs.djangoproject.com/en/3.1/ref/models/fields/
 
 
 """
+
+
 class Departamento(models.Model):
     sigla = models.CharField(max_length=6)
     descricao = models.CharField(max_length=30)
 
+
 class Salario(models.Model):
     valor = models.FloatField(null=True)
+
 
 class Pessoa(models.Model):
     nome = models.CharField(max_length=30)
@@ -47,7 +51,7 @@ class Pessoa(models.Model):
         null=True,
         related_name='chefia_depto',
     )
-    
+
     SENIORIDADE_CHOICES = [
         ('T', 'Trainee'),
         ('J', 'Júnior'),
@@ -56,7 +60,7 @@ class Pessoa(models.Model):
     ]
 
     senioridade = models.CharField(
-        max_length = 1,
+        max_length=1,
         choices=SENIORIDADE_CHOICES,
         default='T'
     )
@@ -73,3 +77,24 @@ class Pessoa(models.Model):
         choices=ESCOLARIDADE_CHOICES,
         default='NI'
     )
+
+
+"""
+O Proxy serve por exemplo, para criar, excluir e
+atualizar instâncias do modelo proxy e ainda assim
+salvar todos os dados como se estivessemos usando
+o modelo original (sem proxy [proxy=False]).
+
+A diferença é que podemos alterar coisas como
+a ordem do modelo padrão ou o gerenciador
+padrão no proxy, sem ter que alterar o original.
+
+Os modelos proxy são declarados como modelos normais.
+Dizemos ao Django que é um modelo proxy atributo
+da classe Meta para True.
+"""
+
+class OrdenarPessoa(Pessoa):
+    class Meta:
+        ordering = ["nome"]
+        proxy = True
