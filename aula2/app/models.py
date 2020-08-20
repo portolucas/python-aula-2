@@ -33,6 +33,20 @@ class Pessoa(models.Model):
     sobrenome = models.CharField(max_length=30)
     idade = models.IntegerField(null=True)
     nacionalidade = models.CharField(max_length=30)
+
+    """
+    _str_ é um método "mágico" do Python que define o que deve
+    ser retornado se você chamar str() sobre um objeto. 
+    O Django usa str(obj) em vários lugares, mais notavelmente 
+    como um valor mostrado para renderizar um objeto no site de 
+    administração do Django e como valores inseridos em um template 
+    quando é mostrado um objeto. Por isso, que você deve sempre 
+    retornar uma string, legível para humanos, dos métodos __str__.
+    """
+
+    def __str__(self):
+        return smart_str('%s %s' % (self.nome, self.sobrenome))
+
     depto_atual = models.ForeignKey(
         Departamento,
         on_delete=models.RESTRICT,
@@ -94,6 +108,7 @@ Dizemos ao Django que é um modelo proxy atributo
 da classe Meta para True.
 https://docs.djangoproject.com/en/3.1/topics/db/models/#proxy-models
 """
+
 
 class OrdenarPessoa(Pessoa):
     class Meta:
