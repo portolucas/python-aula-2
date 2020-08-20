@@ -92,6 +92,7 @@ padrão no proxy, sem ter que alterar o original.
 Os modelos proxy são declarados como modelos normais.
 Dizemos ao Django que é um modelo proxy atributo
 da classe Meta para True.
+https://docs.djangoproject.com/en/3.1/topics/db/models/#proxy-models
 """
 
 class OrdenarPessoa(Pessoa):
