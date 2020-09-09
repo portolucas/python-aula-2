@@ -114,3 +114,31 @@ class OrdenarPessoa(Pessoa):
     class Meta:
         ordering = ["nome"]
         proxy = True
+
+"""
+Relacionamentos
+
+Relacionamento 1-1 (OneToOneField)
+
+Assim como o próprio nome supuõe, o relacionamento 1-1 define
+que um item de uma entidade só poderá se relacionar com um
+item de outra entidade. Por exemplo, um departamento só
+pode ter uma chefia, assim como cada chefe só pode chefiar
+um departamento.
+
+Relacionamento 1N (ForeignKey)
+
+O relacionamento 1N determina que um item de uma tabela 
+pode se relacionar com vários itens de uma outra tabela.
+Por exemplo, uma pessoa pode passar por diversos departamentos,
+porém ela só pode ter um departamento atual.
+
+Relacionamento NN (ManyToManyField)
+
+O relacionam define que um item de uma tabela pode se 
+relacionar com vários itens de uma outra tablea e vice-versa.
+
+Por exemplo, uma pessoa pode ser vinculada a diversos departamentos
+e departamentos podem ter várias pessoas.
+
+"""
